@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
-import ReactCanvasConfetti from 'react-canvas-confetti';
 
 const Result = () => {
   const { score, questions, answers } = useSelector((state) => state.quiz);
@@ -25,7 +24,6 @@ const Result = () => {
 
   return (
     <div style={{ textAlign: 'center', marginTop: '50px' }}>
-      <ReactCanvasConfetti ref={confettiInstance} style={{ position: 'fixed', pointerEvents: 'none', width: '100%', height: '100%' }} />
       <h2>Quiz Result</h2>
       <p>Your Score: {score} / {totalQuestions}</p>
       <p>Percentage: {percentage}%</p>
@@ -35,11 +33,11 @@ const Result = () => {
       <p>{skippedQuestions}</p> 
       {isPass ? (
         <div>
-          <h3 style={{ color: 'blue' }}>PASS - Hurrayyy! 🎉😊</h3>
+          <h3 style={{ color: 'blue' }}>PASS - Congratulations</h3>
         </div>
       ) : (
         <div>
-          <h3 style={{ color: 'red' }}>FAIL - Better Luck next Time 😢</h3>
+          <h3 style={{ color: 'red' }}>FAIL - Better Luck next Time</h3>
         </div>
       )}
     </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAnswer } from '../Redux/actions';
 
@@ -20,11 +21,12 @@ const Question = ({ question }) => {
       dispatch(setAnswer(question.id, (answer || []).filter((option) => option !== value)));
     }
   };
+
   const renderOptions = () => {
     switch (question.type) {
       case 'multiple':
-        return question.options.map((option) => (
-          <div key={option}>
+        return question.options.map((option, index) => (
+          <div key={`${option}-${index}`}>
             <input
               type="radio"
               value={option}
@@ -36,8 +38,8 @@ const Question = ({ question }) => {
           </div>
         ));
       case 'dropdown':
-        return question.options.map((option) => (
-          <div key={option}>
+        return question.options.map((option, index) => (
+          <div key={`${option}-${index}`}>
             <input
               type="checkbox"
               value={option}
@@ -68,6 +70,15 @@ const Question = ({ question }) => {
       {renderOptions()}
     </div>
   );
+};
+
+Question.propTypes = {
+  question: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    text: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    options: PropTypes.array,
+  }).isRequired,
 };
 
 export default Question;

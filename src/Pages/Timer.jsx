@@ -10,7 +10,7 @@ const Timer = () => {
   const expiryTimestamp = new Date();
   expiryTimestamp.setSeconds(expiryTimestamp.getSeconds() + questions.length * 60);
 
-  const { seconds, minutes, isRunning, start, pause, resume, restart } = useTimer({
+  const { seconds, minutes, start} = useTimer({
     expiryTimestamp,
     onExpire: () => dispatch(submitQuiz()), 
   });
